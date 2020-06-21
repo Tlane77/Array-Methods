@@ -197,15 +197,15 @@ agents.forEach((agent) => {
 
 
 // Array to contain all the New York businesses
-// const newYorkBusinesses = businesses.filter((business) => {
-//   let inNewYork = false;
+const newYorkBusinesses = businesses.filter((business) => {
+  let inNewYork = false;
 
-//   if (business.addressStateCode === "NY") {
-//     inNewYork = true;
-//   }
+  if (business.addressStateCode === "NY") {
+    inNewYork = true;
+  }
 
-//   return inNewYork;
-// });
+  return inNewYork;
+});
 
 //find() Array Method Lightning Exercise 4
 document
@@ -213,63 +213,71 @@ document
   .addEventListener("keypress", (keyPressEvent) => {
     if (keyPressEvent.charCode === 13) {
       /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
-      const mapBusiness = businesses.map((business) =>
-        business.companyName.includes(keyPressEvent.target.value)
+      const foundBusiness = businesses.find((business) =>
+        business.purchasingAgent.nameFirst.includes(keyPressEvent.target.value)
+        // business.purchasingAgent.lastFirst.includes(keyPressEvent.target.value)
+
       );
 
       outEl.innerHTML = `
                 <h2>
-                ${mapBusiness.companyName}
+                ${foundBusiness.companyName}
                 </h2>
                 <section>
-                ${mapBusiness.addressFullStreet}
+                ${foundBusiness.addressFullStreet}
 
                 </section>
                 <section>
-                ${mapBusiness.addressCity},
-                ${mapBusiness.addressStateCode}
-                ${mapBusiness.addressZipCode}
+                ${foundBusiness.addressCity},
+                ${foundBusiness.addressStateCode}
+                ${foundBusiness.addressZipCode}
                 </section>
             `;
     }
   });
-  document
-    .querySelector("#agentsSearch")
-    .addEventListener("keypress", (keyPressEvent) => {
-      if (keyPressEvent.charCode === 13) {
-        /* WHEN  USER PRESSES ENTER, FIND MATCHING AGENTS */
-        const mapAgents = agents.map((agents) =>
-          agents.companyName.includes(keyPressEvent.target.value)
-        );
 
-        outEl.innerHTML = `
-                <h2>
-                ${mapAgents.companyName}
-                </h2>
-                <section>
-                ${mapAgents.addressFullStreet}
+  //Second Button Practice to pull in by purchasing Agent..map() method.
+  // document
+  //   .querySelector("#companySearch")
+  //   .addEventListener("keypress", (keyPressEvent) => {
+  //     if (keyPressEvent.charCode === 13) {
+  //       /* WHEN  USER PRESSES ENTER, FIND MATCHING AGENTS */
+  //       const mapAgents = agents.map((agents) =>
+  //         business.companyName.includes(keyPressEvent.target.value)
+  //       );
 
-                </section>
-                <section>
-                ${mapAgents.addressCity},
-                ${mapAgents.addressStateCode}
-                ${mapAgents.addressZipCode}
-                </section>
-            `;
-      }
-    });
+  //       outEl.innerHTML = `
+  //               <h2>
+  //               ${mapAgents.companyName}
+  //               </h2>
+  //               <section>
+  //               ${mapAgents.addressFullStreet}
 
-//     // Lighting exercise 5
-// const monthlyRainfall = [23, 13, 27, 20, 20, 31, 33, 26, 19, 12, 14, 12, 10]
+  //               </section>
+  //               <section>
+  //               ${mapAgents.addressCity},
+  //               ${mapAgents.addressStateCode}
+  //               ${mapAgents.addressZipCode}
+  //               </section>
+  //           `;
+  //     }
+  //   });
 
-// const totalRainfall = monthlyRainfall.reduce((currentRain, newRain) => currentRain += newRain, 0)
 
-// console.log(totalRainfall)
 
-// // Lighting exercise 6
-// const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"]
 
-// const sentence = words.reduce((currentSentence, newWord) => currentSentence += ` ${newWord}`, "")
+    // Lighting exercise 5
+const monthlyRainfall = [23, 13, 27, 20, 20, 31, 33, 26, 19, 12, 14, 12, 10]
 
-// console.log(sentence)
+const totalRainfall = monthlyRainfall.reduce((currentRain, newRain) => currentRain += newRain, 0)
+
+console.log(totalRainfall)
+
+// Lighting exercise 6
+const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"]
+
+const sentence = words.reduce((currentSentence, newWord) => currentSentence += ` ${newWord}`, "")
+
+console.log(sentence)
+
 // export default businesses;
